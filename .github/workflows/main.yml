@@ -5,14 +5,40 @@
 # Author: P3TERX
 # Blog: https://p3terx.com
 #=================================================
-name: X64-1907
+#name: X64-1907
 
-on:
-  schedule:
-    - cron: 0 20 * * *
+#lienol ori
+#on:
+#  schedule:
+#    - cron: 0 20 * * *
 #  push:
 #    branches: 
 #      - master
+
+#copy from jcnnet
+on:
+  release:
+    types: [published]
+  push:
+    branches:
+      - dev-lean-lede
+    paths:
+      - '.config'
+#  schedule:
+#    - cron: 0 8 * * 5
+  watch:
+    types: [started]
+
+env:
+  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_BRANCH: dev-lean-lede
+  CONFIG_FILE: .config
+  DIY_SH: diy.sh
+  FREE_UP_DISK: false
+  SSH_ACTIONS: true
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  TZ: Asia/Shanghai
 
 jobs:
   build:
